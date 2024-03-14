@@ -1,15 +1,39 @@
+<script setup>
+
+import BaseHeader from '../components/BaseHeader.vue';
+
+
+//hier wird das objekt einfach aus einer 
+//Datei exportiert um in eine andere datei zu importieren
+import { ref, onMounted } from 'vue'; // Importiere ref und onMounted aus dem Vue-Paket
+
+
+    // Verwende ref, um eine reaktive Variable zu erstellen
+    const tweets = ref([]);
+
+    // Verwende onMounted, um Code auszuführen, nachdem die Komponente montiert wurde
+    onMounted(async () => {
+      try {
+        const response = await axios.get("/api/tweets");
+        // Aktualisiere den Wert von tweets mit den Daten aus der API-Antwort
+        tweets.value = response.data;
+      } catch (error) {
+        // Fehlerbehandlung
+        console.error(error);
+      }
+    });
+
+
+
+</script>
+
 
 
 <template>
 
-    <div>
-        <BaseHeader/>
-    </div>
+    <BaseHeader/>
 
-
-    <div class="tweet-container">
-        <h1>Tweets</h1>
-        
+    <div class="tweet-container">   
         <ul>
         <li v-for="tweet in tweets" :key="tweet.id">
             <h2>{{ tweet.title }}</h2>
@@ -24,33 +48,7 @@
 </template>
 
 
-<script>
 
-import BaseHeader from '../components/BaseHeader.vue';
-//hier wird das objekt einfach aus einer 
-//Datei exportiert um in eine andere datei zu importieren
-export default {
-  data() {
-    return {
-      tweets: [],
-    };
-  },
-  mounted() {
-    this.getValue();
-  },
-  methods: {
-    async getValue() {
-      try {
-        const response = await axios.get("/api/tweets");
-        this.tweets = response.data;
-      } catch (error) {
-        // Fehlerbehandlung
-        console.log(error);
-      }
-    },
-  },
-};
-</script>
 
 
 <style scoped>

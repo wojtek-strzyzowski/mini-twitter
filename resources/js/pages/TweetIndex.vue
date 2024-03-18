@@ -33,13 +33,15 @@ import { ref, onMounted } from 'vue'; // Importiere ref und onMounted aus dem Vu
 
     <BaseHeader/>
 
-    <div class="tweet-container">   
+    <div class="outer-tweet-container">   
         <ul>
         <li v-for="tweet in tweets" :key="tweet.id">
-            <h2>{{ tweet.title }}</h2>
-            <p>{{ tweet.tweet }}</p>
-            <p>Erstellt am: {{ tweet.created_at }}</p>
-            <p>Aktualisiert am: {{ tweet.updated_at }}</p>
+            <div class="inner-tweet-container">
+                <h2>{{ tweet.title }}</h2>
+                <p>{{ tweet.tweet }}</p>
+                <p>Erstellt am: {{ tweet.created_at }}</p>
+                <p>Aktualisiert am: {{ tweet.updated_at }}</p>
+        </div>
         </li>
         </ul>
     </div>
@@ -53,6 +55,9 @@ import { ref, onMounted } from 'vue'; // Importiere ref und onMounted aus dem Vu
 
 <style scoped>
 
-
+.inner-tweet-container{
+    background-color: beige;
+    padding-bottom: 15px;
+}
 
 </style>

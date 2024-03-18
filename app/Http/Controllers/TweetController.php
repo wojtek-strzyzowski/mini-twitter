@@ -19,15 +19,20 @@ class TweetController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'required',
-            'tweet' => 'required',
-        ], [
-            'title.required' => 'The title field is required.',
-            'tweet.required' => 'The tweet field is required.',
-        ]);
+        // $validatedData = $request->validate([
+        //     'title' => 'required',
+        //     'tweet' => 'required',
+        // ], [
+        //     'title.required' => 'The title field is required.',
+        //     'tweet.required' => 'The tweet field is required.',
+        // ]);
 
-        $tweet = Tweet::create($validatedData);
+        $tweet = Tweet::create([
+            'firstname'=>'wojtek',
+            'lastname'=>'strzyzowski',
+            'title' => $request->title,
+            'tweet'=> $request->tweet
+        ]);
 
         return response()->json(['message' => 'Tweet created successfully', 'tweet' => $tweet], 201);
     }

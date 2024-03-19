@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
+import TweetShow from "./pages/TweetShow.vue";
+import TweetEdit from './pages/TweetEdit.vue';
 
 
 
@@ -12,11 +14,12 @@ const routes = [
         component: TweetCreate => import("./pages/TweetCreate.vue"),
     },
     {
-        path: "/tweets/singletweet",
+        path: "/tweets/:id",
         component: TweetShow => import("./pages/TweetShow.vue"),
+        name: "TweetShow",
     },
     {
-        path: "/tweets/edit",
+        path: '/tweets/:id/edit',
         component: TweetEdit => import("./pages/TweetEdit.vue"),
     },
 ];

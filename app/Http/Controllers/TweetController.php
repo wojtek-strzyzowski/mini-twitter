@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tweet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TweetController extends Controller
 {
@@ -19,13 +20,16 @@ class TweetController extends Controller
 
     public function store(Request $request)
     {
-        // $validatedData = $request->validate([
-        //     'title' => 'required',
-        //     'tweet' => 'required',
-        // ], [
-        //     'title.required' => 'The title field is required.',
-        //     'tweet.required' => 'The tweet field is required.',
-        // ]);
+        //hier kommen die Validierungsregeln
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|max:255',
+            'tweet' => 'required|string',
+        ]);
+
+         // Überprüfe, ob die Validierung fehlgeschlagen ist
+         if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
 
         $tweet = Tweet::create([
             'firstname'=>'wojtek',

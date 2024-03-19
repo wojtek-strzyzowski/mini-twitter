@@ -19,12 +19,14 @@ const createTweet = async () => {
       tweet: newTweet.value.content
     });
     
-    router.push('/tweets'); 
     // Erfolgsmeldung oder Weiterleitung zur Index-Seite
+    router.push('/tweets'); 
+    
   } catch (error) {
     console.error('Fehler beim Erstellen des Tweets:', error);
   }
 };
+
 
 </script>
 

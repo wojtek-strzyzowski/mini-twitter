@@ -24,7 +24,7 @@
   import { useRouter } from 'vue-router';
   
   const router = useRouter();
-  const editedTweet = ref({ title: '', tweet: '' });
+  const editedTweet = ref({ title: '', tweet: '' }); 
   const errors = ref({});
   
   const loadTweet = async () => {
@@ -33,7 +33,7 @@
       const response = await axios.get(`/api/tweets/${tweetId}`);
       editedTweet.value = response.data;
     } catch (error) {
-      console.error('Fehler beim Laden des Tweets:', error);
+        console.error('Fehler beim Laden des Tweets:', error);
     }
   };
   
@@ -44,7 +44,7 @@
   const updateTweet = async () => {
     // Validierung überprüfen
     if (!editedTweet.value.title.trim()) {
-      errors.value.title = 'Titel ist erforderlich';
+        errors.value.title = 'Titel ist erforderlich';
       return;
     }
     if (!editedTweet.value.tweet.trim()) {

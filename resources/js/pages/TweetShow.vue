@@ -1,30 +1,8 @@
-<template>
-  <div v-if="tweet">
-    <h1>{{ tweet.title }}</h1>
-    <p>{{ tweet.tweet }}</p>
-    <p>Erstellt am: {{ tweet.created_at }}</p>
-    <p>Aktualisiert am: {{ tweet.updated_at }}</p>
-    <button @click="editTweet">Bearbeiten</button>
-    <button @click="confirmDelete">Löschen</button>
-  </div>
-  <div v-else>
-    <p>Der Tweet wurde nicht gefunden.</p>
-  </div>
-
-  <!-- Bestätigungsmodal -->
-  <div v-if="showDeleteModal" class="modal">
-    <div class="modal-content">
-      <p>Möchten Sie diesen Tweet wirklich löschen?</p>
-      <button @click="deleteTweet">Ja</button>
-      <button @click="cancelDelete">Abbrechen</button>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { ref, watch } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
+import BaseHeader from '../components/BaseHeader.vue';
 
 const router = useRouter();
 const tweet = ref(null);
@@ -75,8 +53,43 @@ const deleteTweet = async () => {
 };
 </script>
 
+
+
+<template>
+
+<BaseHeader/>
+
+  <div v-if="tweet" class="tweet">
+      <h1>{{ tweet.title }}</h1>
+      <p>{{ tweet.tweet }}</p>
+      <p>Erstellt am: {{ tweet.created_at }}</p>
+      <p>Aktualisiert am: {{ tweet.updated_at }}</p>
+    <div class="button"> 
+      <button class="edit" @click="editTweet">Bearbeiten</button>
+      <button class="delete" @click="confirmDelete">Löschen</button>
+    </div>
+  </div>
+  
+  <div v-else>
+    <p>Der Tweet wurde nicht gefunden.</p>
+  </div>
+
+  <!-- Bestätigungsmodal -->
+  <div v-if="showDeleteModal" class="modal">
+    <div class="modal-content">
+        <p>Möchten Sie diesen Tweet wirklich löschen?</p>
+        <button @click="deleteTweet">Ja</button>
+        <button @click="cancelDelete">Abbrechen</button>
+     
+
+    </div>
+  </div>
+
+</template>
+
+
 <style>
-/* Stil definieren, falls gewünscht */
+
 .modal {
   position: fixed;
   top: 0;
@@ -94,4 +107,31 @@ const deleteTweet = async () => {
   padding: 20px;
   border-radius: 5px;
 }
+
+.tweet {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: beige;
+    margin: 15px;
+    }
+
+.button {
+    display: flex;
+    gap: 25px;
+    flex-direction: row;
+}
+
+.edit {
+    color: antiquewhite;
+    background-color: black;
+    border-radius: 5px;
+    }
+
+.delete {
+  color: antiquewhite;
+  background-color: red;
+  border-radius: 5px;
+}
+
 </style>

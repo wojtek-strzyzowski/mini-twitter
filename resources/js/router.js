@@ -6,7 +6,7 @@ import TweetEdit from './pages/TweetEdit.vue';
 
 const routes = [
     {
-        path: "/tweets",
+        path: "/",
         component: TweetIndex => import("./pages/TweetIndex.vue"),
     },
     {

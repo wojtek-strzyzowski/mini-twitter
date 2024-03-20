@@ -8,14 +8,13 @@
             <h1>Mini-Twitter</h1>
         </div>
         <div class="home-link">
-            <router-link to="/tweets/">my Tweets</router-link>
+            <router-link to="/">my Tweets</router-link>
         </div>
 
         <div class="header-button">
             <button @click.prevent="getValue">
                 <router-link to="/tweets/create"> + Create a Tweet</router-link>
             </button>
-            <p v-if="response">{{ response.data }}</p>
         </div>    
     </div>
 </header>
@@ -32,7 +31,7 @@ header {
 
 .header {
     display: grid;
-    grid-template-columns: 25% 50% 25%;
+    grid-template-columns: 1fr minmax(300px, 2fr) 1fr;
     align-items: center;
 }
 
@@ -45,16 +44,17 @@ h1{
 }
 
 .header-button {
-    grid-column-start: 3;
-    grid-column-end: 4;
-    grid-row-start: 1;
+    display: flex;
+    justify-content: end;
+
 }
 
 button {
-    justify-items: center;
+    justify-content: center;
     background-color: #1D9BF0;
     align-self: center;
     border-radius: 50px;
+    
 }
 
 a {
@@ -62,7 +62,9 @@ a {
 }
 
 .home-link a {
+    display: grid;
     color: black;
+    justify-content: end;  
 }
 
 </style>

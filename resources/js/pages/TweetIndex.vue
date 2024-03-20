@@ -30,9 +30,9 @@ const showTweet = (tweetID) => {
 };
 
 const formatDate = (dateToString) => {
-  const date = new Date (dateToString);
-
-  return date.toLocaleString ('en-DE');
+  const date = new Date(dateToString);
+  const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  return date.toLocaleDateString('de-DE', options);
 }
 </script>
 
@@ -44,12 +44,13 @@ const formatDate = (dateToString) => {
 
     <div class="outer-tweet-container">   
      
-        <div v-for="tweet in tweets" :key="tweet.id">
+        <div class="grid" v-for="tweet in tweets" :key="tweet.id">
             <div class="inner-tweet-container">
               <div class="date">
-                <p>Erstellt am: {{ formatDate(tweet.created_at) }}</p>
-                <p>Aktualisiert am: {{ formatDate(tweet.updated_at )}}</p>  
+                <p>Created: {{ formatDate(tweet.created_at) }}</p>
+                <p>Updated: {{ formatDate(tweet.updated_at )}}</p>  
               </div>
+              
               
                 <h2>{{ tweet.title }}</h2>
                 <p>{{ tweet.tweet }}</p>
@@ -73,23 +74,28 @@ const formatDate = (dateToString) => {
 <style scoped>
 
 
-.inner-tweet-container{
-    display: flex;
-    flex-direction: column;
-    background-color: white;
+.outer-tweet-container{
+    display: grid;
+    grid-template-columns: 1fr minmax(300px, 2fr) 1fr;
+    align-items: center;
+    gap: 20px;
+  }
+
+.grid {
+      grid-column: 2;
     }
 
-  .inner-tweet-container {
+.inner-tweet-container {
     margin: 15px;
+    background-color: white;
   }
 
 .date {
-  display: flex;
-  flex-direction: column;
+
   text-align: right;
 }
 
-  button {
+button {
     color: antiquewhite;
     background-color: black;
     border-radius: 15px;

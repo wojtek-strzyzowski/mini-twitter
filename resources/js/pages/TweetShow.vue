@@ -51,6 +51,13 @@ const deleteTweet = async () => {
     console.error('Fehler beim Löschen des Tweets:', error);
   }
 };
+
+const formatDate = (dateToString) => {
+  const date = new Date(dateToString);
+  const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  return date.toLocaleDateString('de-DE', options);
+}
+
 </script>
 
 
@@ -59,11 +66,13 @@ const deleteTweet = async () => {
 
 <BaseHeader/>
 
+<div class="grid">
   <div v-if="tweet" class="tweet">
+      <p>Tweet vom: {{ formatDate(tweet.created_at) }}</p> 
       <h1>{{ tweet.title }}</h1>
       <p>{{ tweet.tweet }}</p>
-      <p>Erstellt am: {{ tweet.created_at }}</p>
-      <p>Aktualisiert am: {{ tweet.updated_at }}</p>
+      
+
     <div class="button"> 
       <button class="edit" @click="editTweet">Bearbeiten</button>
       <button class="delete" @click="confirmDelete">Löschen</button>
@@ -73,6 +82,7 @@ const deleteTweet = async () => {
   <div v-else>
     <p>Der Tweet wurde nicht gefunden.</p>
   </div>
+</div>
 
   <!-- Bestätigungsmodal -->
   <div v-if="showDeleteModal" class="modal">
@@ -89,6 +99,13 @@ const deleteTweet = async () => {
 
 
 <style>
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 2fr) 1fr;
+  align-items: center;
+  gap: 20px;
+}
 
 .modal {
   position: fixed;
@@ -111,27 +128,29 @@ const deleteTweet = async () => {
 .tweet {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background-color: beige;
     margin: 15px;
-    }
+    grid-column: 2;
+  }
 
 .button {
     display: flex;
     gap: 25px;
     flex-direction: row;
-}
+    align-items: center;
+    width: 146px;
+    height: 38px;
+  }
 
 .edit {
     color: antiquewhite;
     background-color: black;
     border-radius: 5px;
-    }
+  }
 
 .delete {
   color: antiquewhite;
   background-color: red;
   border-radius: 5px;
-}
+  }
 
 </style>

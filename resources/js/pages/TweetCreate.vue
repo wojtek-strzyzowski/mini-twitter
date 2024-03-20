@@ -2,8 +2,8 @@
 import BaseFooter from '../components/BaseFooter.vue';
 import BaseHeader from '../components/BaseHeader.vue';
 import { useRouter } from 'vue-router';
-import { ref } from 'vue';
-import axios from 'axios';
+import { ref } from 'vue'; // wird verwendetum sich automatisch zu aktualiesiern, wenn sich Werte ändern
+import axios from 'axios'; // HTTP-Client Biblio für die Kommunikation mit der API
 
 const router = useRouter();
 
@@ -12,6 +12,8 @@ const newTweet = ref({
   content: ''
 });
 
+
+//Beim try /catch sende ich einen POST Request an die API um TWEET zu erstellen
 const createTweet = async () => {
   try {
     let response = await axios.post('/api/tweets', {

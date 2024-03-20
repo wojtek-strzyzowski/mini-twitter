@@ -9,11 +9,12 @@ const router = useRouter();
 const editedTweet = ref({ title: '', tweet: '' }); 
 const errors = ref({});
 
+// Funktion zum Laden des zu bearbeitenden Tweets
 const loadTweet = async () => {
-  const tweetId = router.currentRoute.value.params.id;
+  const tweetId = router.currentRoute.value.params.id; //Hier hole ich die ID mit den Parametern des Routers
   try {
-    const response = await axios.get(`/api/tweets/${tweetId}`);
-    editedTweet.value = response.data;
+    const response = await axios.get(`/api/tweets/${tweetId}`); // Schicke GET anfrage an die API um den Tweet zu bekommen
+    editedTweet.value = response.data; //Speicher den bekommenden Tweet
   } catch (error) {
       console.error('Fehler beim Laden des Tweets:', error);
   }

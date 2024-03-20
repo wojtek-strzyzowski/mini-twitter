@@ -47,12 +47,13 @@ const deleteTweet = async () => {
   const tweetId = router.currentRoute.value.params.id;
   try {
     await axios.delete(`/api/tweets/${tweetId}`);
-    router.push('/'); // Zur Indexseite navigieren
+    router.push('/'); // Zur Indexseite zurück
   } catch (error) {
     console.error('Fehler beim Löschen des Tweets:', error);
   }
 };
 
+//Funktion um den Timestamp zu verkleinern (Tag.Monat.Jahr)
 const formatDate = (dateToString) => {
   const date = new Date(dateToString);
   const options = { year: 'numeric', month: '2-digit', day: '2-digit' };

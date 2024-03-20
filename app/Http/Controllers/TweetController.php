@@ -31,6 +31,7 @@ class TweetController extends Controller
             return response()->json(['error' => $validator->errors()], 400);
         }
 
+        //Hier erstelle ich einen neuen Tweet mit Titel- und Textwerten
         $tweet = Tweet::create([
             'firstname'=>'wojtek',
             'lastname'=>'strzyzowski',
@@ -38,6 +39,7 @@ class TweetController extends Controller
             'tweet'=> $request->tweet
         ]);
 
+        //Tweet wird als Objekt zurück gegenben ohne eine neue Anfrage zu schicken
         return response()->json(['message' => 'Tweet created successfully', 'tweet' => $tweet], 201);
     }
 

@@ -79,26 +79,31 @@ const formatDate = (dateToString) => {
     grid-template-columns: 1fr minmax(300px, 2fr) 1fr;
     align-items: center;
     gap: 20px;
-  }
+    }
 
-.grid {
+    .grid {
       grid-column: 2;
     }
 
 .inner-tweet-container {
-    margin: 15px;
-    background-color: white;
-  }
+  padding: 30px;
+  background-color: white;
+}
+
+
+
 
 .date {
 
   text-align: right;
 }
 
-button {
+  button {
     color: antiquewhite;
     background-color: black;
     border-radius: 15px;
+    width: 131px;
+    height: 36px;
   }
 
 </style>

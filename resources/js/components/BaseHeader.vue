@@ -27,6 +27,7 @@
 
 header {
     background-color: white;
+   margin-bottom: 25px;
 }
 
 .header {
@@ -54,17 +55,21 @@ button {
     background-color: #1D9BF0;
     align-self: center;
     border-radius: 50px;
-    
+    width: 161px;
+    height: 39px;
 }
+
 
 a {
     color: white;
+    font-size: 16px;
 }
 
 .home-link a {
     display: grid;
     color: black;
     justify-content: end;  
+    font-size: 18px;
 }
 
 </style>

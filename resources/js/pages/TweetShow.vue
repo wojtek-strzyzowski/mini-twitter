@@ -3,6 +3,7 @@ import { ref, watch } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 import BaseHeader from '../components/BaseHeader.vue';
+import BaseFooter from '../components/BaseFooter.vue';
 
 const router = useRouter();
 const tweet = ref(null);
@@ -46,7 +47,7 @@ const deleteTweet = async () => {
   const tweetId = router.currentRoute.value.params.id;
   try {
     await axios.delete(`/api/tweets/${tweetId}`);
-    router.push('/tweets'); // Zur Indexseite navigieren
+    router.push('/'); // Zur Indexseite navigieren
   } catch (error) {
     console.error('Fehler beim Löschen des Tweets:', error);
   }
@@ -95,16 +96,19 @@ const formatDate = (dateToString) => {
     </div>
   </div>
 
+  <BaseFooter/>
+
 </template>
 
 
-<style>
+<style scoped>
 
 .grid {
   display: grid;
   grid-template-columns: 1fr minmax(300px, 2fr) 1fr;
   align-items: center;
   gap: 20px;
+  height: 100%;
 }
 
 .modal {
@@ -152,5 +156,9 @@ const formatDate = (dateToString) => {
   background-color: red;
   border-radius: 5px;
   }
+
+.footer {
+
+}
 
 </style>

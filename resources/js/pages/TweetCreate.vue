@@ -1,5 +1,5 @@
 <script setup>
-
+import BaseFooter from '../components/BaseFooter.vue';
 import BaseHeader from '../components/BaseHeader.vue';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
@@ -20,7 +20,7 @@ const createTweet = async () => {
     });
     
     // Erfolgsmeldung oder Weiterleitung zur Index-Seite
-    router.push('/tweets'); 
+    router.push('/'); 
     
   } catch (error) {
     console.error('Fehler beim Erstellen des Tweets:', error);
@@ -52,6 +52,7 @@ const createTweet = async () => {
     </form>
 </div>
 
+<BaseFooter/>
 
 </template>
 
@@ -62,8 +63,7 @@ const createTweet = async () => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; 
-  background-color: beige;
+  height: 100vh; /* Setzen Sie die Höhe auf volle Bildschirmhöhe */
 }
 
 form {
@@ -71,12 +71,12 @@ form {
   flex-direction: column;
   align-items: center;
   width: 75%;
-  padding: 20px; 
+  padding: 20px; /* Fügen Sie etwas Innenabstand hinzu */
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 20px; 
+  margin-bottom: 20px; /* Fügen Sie Platz unter dem Titel hinzu */
 }
 
 textarea, input {
@@ -84,8 +84,8 @@ textarea, input {
   font-size: 24px;
   padding: 10px;
   margin-bottom: 15px;
-  width: 100%;
-  box-sizing: border-box; 
+  width: 100%; /* Füllen Sie die Breite des Formularelements aus */
+  box-sizing: border-box; /* Berücksichtigen Sie das Padding in der Breite */
 }
 
 button {

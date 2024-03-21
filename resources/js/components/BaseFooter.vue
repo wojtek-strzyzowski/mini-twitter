@@ -17,7 +17,7 @@
     align-items: center;
     background-color: white;
     bottom: 0;
-    position: fixed;
+    position: relative;
     width: 100%;
     }
 

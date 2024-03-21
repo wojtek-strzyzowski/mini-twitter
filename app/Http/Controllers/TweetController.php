@@ -10,7 +10,8 @@ class TweetController extends Controller
 {
     public function index()
     {
-        return Tweet::all();
+        $tweets = Tweet::simplePaginate(3); // Ändere die Anzahl der Tweets pro Seite nach Bedarf
+        return response()->json($tweets);
     }
 
     public function show(Tweet $tweet)
